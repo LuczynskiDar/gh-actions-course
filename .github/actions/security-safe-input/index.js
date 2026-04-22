@@ -1,16 +1,16 @@
-const coere = require('@actions/core');
+const core = require('@actions/core');
 
 async function run() {
     try {
         const prTitle = core.getInput('pr-title');
         if(prTitle.startsWith('feat')) {
-            core.inf('PR is a feature'); 
+            core.info('PR is a feature'); 
         } 
         else {
             core.setFailed('PR is not a feature');
         }
-    } catch (error) {
-        core.setFailed(error.message);
+    } catch (e) {
+        core.setFailed(e.message);
     }
 }
 
