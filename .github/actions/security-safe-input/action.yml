@@ -1,0 +1,11 @@
+name: Safe Title Check
+description: A GitHub Action to safely check the title of a pull request without exposing it to potential security risks.
+
+inputs:
+  pr-title:
+    description: The PR title to check
+    required: true
+
+runs:
+  using: "node20"
+  main: "index.js"
