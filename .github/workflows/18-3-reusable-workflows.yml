@@ -13,3 +13,5 @@ jobs:
         # Reuse the workflow defined in the same repository
         # uses: <owner>/<repo>/.github/workflows/<workflow_name>@<version>
         uses: gh-actions-master-class/github-actions-course-exmaple-e2e/.github/workflows/e2e.yml@main
+        secrets:
+            access_token: ${{ secrets.GH_TOKEN }}
