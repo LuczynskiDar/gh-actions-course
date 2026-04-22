@@ -1,0 +1,45 @@
+name: 19.2 - Concurrency
+run-name: 19 - 2 - Concurrency
+
+on:
+    workflow_dispatch:
+
+
+jobs:
+    ping-with-concurrency:
+        runs-on: ubuntu-latest
+                
+        concurrency:
+            group: ${{ github.workflow }}-${{ github.ref }}
+            # cancel-in-progress: true
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v6
+                with:
+                    ref: ${{ github.head_ref }}
+            -   name: Ping URL
+                id: ping-url
+                uses: ./.github/actions/docker-ping-url
+                with:
+                    url: https://wwww.invalid-samoasdadaweqwr.com
+                    max_trials: 20
+                    delay: 5
+                    
+    ping-without-concurrency:
+        runs-on: ubuntu-latest
+                
+        concurrency:
+            group: ${{ github.workflow }}-${{ github.ref }}
+            # cancel-in-progress: true
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v6
+                with:
+                    ref: ${{ github.head_ref }}
+            -   name: Ping URL
+                id: ping-url
+                uses: ./.github/actions/docker-ping-url
+                with:
+                    url: https://wwww.invalid-samoasdadaweqwr.com
+                    max_trials: 20
+                    delay: 5
